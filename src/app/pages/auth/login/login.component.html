@@ -1,0 +1,133 @@
+<!-- src/app/pages/auth/login/login.component.html -->
+<div class="auth-wrapper">
+
+  <!-- ── Left brand panel ─────────────────────────── -->
+  <div class="brand-panel">
+    <div class="brand-content">
+      <div class="brand-logo">
+        <mat-icon class="logo-icon">bolt</mat-icon>
+        <span>CRM<strong>Pro</strong></span>
+      </div>
+      <h2>Close more deals.<br/>Build better relationships.</h2>
+      <p>Manage customers, leads and pipeline
+        all in one powerful workspace.</p>
+<!--      <div class="stats-row">-->
+<!--        @for (stat of stats; track stat.label) {-->
+<!--          <div class="stat">-->
+<!--            <span class="stat-value">{{ stat.value }}</span>-->
+<!--            <span class="stat-label">{{ stat.label }}</span>-->
+<!--          </div>-->
+<!--        }-->
+<!--      </div>-->
+    </div>
+    <div class="deco deco-1"></div>
+    <div class="deco deco-2"></div>
+  </div>
+
+  <!-- ── Right form panel ─────────────────────────── -->
+  <div class="form-panel">
+    <mat-card class="form-card" appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>Welcome back</mat-card-title>
+        <mat-card-subtitle>Sign in to your CRM account</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+
+        <!-- Error alert -->
+        @if (errorMessage()) {
+          <div class="error-alert">
+            <mat-icon>warning</mat-icon>
+            {{ errorMessage() }}
+          </div>
+        }
+
+        <form [formGroup]="form"
+              (ngSubmit)="onSubmit()"
+              novalidate>
+
+          <!-- Email -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email address</mat-label>
+            <input matInput
+                   type="email"
+                   formControlName="email"
+                   placeholder="you@company.com"
+                   autocomplete="email"/>
+            <mat-icon matPrefix>mail_outline</mat-icon>
+            @if (email.hasError('required') && email.touched) {
+              <mat-error>Email is required</mat-error>
+            }
+            @if (email.hasError('email') && email.touched) {
+              <mat-error>Enter a valid email address</mat-error>
+            }
+          </mat-form-field>
+
+          <!-- Password -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Password</mat-label>
+            <input matInput
+                   [type]="showPassword() ? 'text' : 'password'"
+                   formControlName="password"
+                   placeholder="Min. 6 characters"
+                   autocomplete="current-password"/>
+            <mat-icon matPrefix>lock_outline</mat-icon>
+            <button mat-icon-button matSuffix
+                    type="button"
+                    (click)="togglePassword()"
+                    [attr.aria-label]="'Toggle password'">
+              <mat-icon>
+                {{ showPassword() ? 'visibility_off' : 'visibility' }}
+              </mat-icon>
+            </button>
+            @if (password.hasError('required') && password.touched) {
+              <mat-error>Password is required</mat-error>
+            }
+            @if (password.hasError('minlength') && password.touched) {
+              <mat-error>Minimum 6 characters</mat-error>
+            }
+          </mat-form-field>
+
+          <!-- Forgot -->
+          <div class="forgot-row">
+            <a routerLink="/auth/forgot-password"
+               class="forgot-link">Forgot password?</a>
+          </div>
+
+          <!-- Submit -->
+          <button mat-flat-button
+                  class="submit-btn"
+                  type="submit"
+                  [disabled]="loading()">
+            @if (loading()) {
+              <mat-spinner diameter="20"/>
+              Signing in...
+            } @else {
+              <mat-icon>login</mat-icon>
+              Sign in
+            }
+          </button>
+
+        </form>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <p class="signup-link">
+          Don't have an account?
+          <a routerLink="/auth/register" mat-button color="primary">
+            Create one free
+          </a>
+        </p>
+      </mat-card-actions>
+    </mat-card>
+
+    <!-- Spacer pushes footer to bottom -->
+<!--    <div class="flex-spacer"></div>-->
+
+    <!-- Footer -->
+    <div class="footer-copy">
+      <p>© {{ currentYear }} AVC Solutions. All rights reserved.</p>
+    </div>
+  </div>
+
+</div>
