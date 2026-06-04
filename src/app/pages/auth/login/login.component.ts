@@ -1,7 +1,7 @@
 import {Component, signal} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {AuthService} from '../../../core/auth/auth.service';
-import {Router} from 'express';
+import {Router} from '@angular/router';
 import {MatIcon} from '@angular/material/icon';
 import {
   MatCard,
@@ -55,8 +55,8 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
-    // private authService: AuthService,
-    // private router: Router
+    private authService: AuthService,
+    private router: Router
   ) {
     this.form = this.fb.group({
       email:    ['', [Validators.required, Validators.email]],
@@ -70,27 +70,28 @@ export class LoginComponent {
   togglePassword() { this.showPassword.update(v => !v); }
 
   onSubmit() {
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
-      return;
-    }
+    console.log('call sub')
+    // if (this.form.invalid) {
+    //   this.form.markAllAsTouched();
+    //   return;
+    // }
     this.loading.set(true);
     this.errorMessage.set('');
 
-    // this.authService.login(
-    //   this.email.value,
-    //   this.password.value
-    // ).subscribe({
-    //   next: () => {
-    //     this.loading.set(false);
-    //     this.router.navigate(['/dashboard']);
-    //   },
-    //   error: (err) => {
-    //     this.loading.set(false);
-    //     this.errorMessage.set(
-    //       err?.error?.message || 'Invalid email or password'
-    //     );
-    //   }
-    // });
+    this.authService.login(
+      this.email.value,
+      this.password.value
+    ).subscribe({
+      next: () => {
+        this.loading.set(false);
+        this.router.navigate(['/dashboard']);
+      },
+      error: (err) => {
+        this.loading.set(false);
+        this.errorMessage.set(
+          err?.error?.message || 'Invalid email or password'
+        );
+      }
+    });
   }
 }
