@@ -1,0 +1,69 @@
+<!-- src/app/layout/topbar/topbar.component.html -->
+<header class="topbar">
+
+  <!-- Left — menu toggle + title -->
+  <div class="topbar-left">
+    <button class="menu-toggle"
+            (click)="toggleSidebar.emit()"
+            matTooltip="Toggle sidebar">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h1 class="page-title">{{ pageTitle() }}</h1>
+  </div>
+
+  <!-- Right — actions -->
+  <div class="topbar-right">
+
+    <!-- Notifications -->
+    <button class="icon-btn"
+            [matMenuTriggerFor]="notifMenu"
+            [matBadge]="unreadCount"
+            [matBadgeHidden]="unreadCount === 0"
+            matBadgeColor="warn"
+            matBadgeSize="small">
+      <mat-icon>notifications_none</mat-icon>
+    </button>
+
+    <mat-menu #notifMenu="matMenu" class="notif-menu">
+      <div class="notif-header">
+        <span>Notifications</span>
+        <span class="notif-count">{{ unreadCount }} new</span>
+      </div>
+      <mat-divider/>
+      @for (notif of notifications; track notif.message) {
+        <div class="notif-item" [class.unread]="!notif.read">
+          <div class="notif-dot" [class.visible]="!notif.read"></div>
+          <div class="notif-body">
+            <p>{{ notif.message }}</p>
+            <span>{{ notif.time }}</span>
+          </div>
+        </div>
+      }
+    </mat-menu>
+
+    <!-- User avatar menu -->
+    <button class="user-btn"
+            [matMenuTriggerFor]="userMenu">
+      <div class="topbar-avatar">{{ getInitials() }}</div>
+      <div class="user-meta">
+        <span class="user-name">{{ currentUser()?.name }}</span>
+        <span class="user-role">{{ currentUser()?.role }}</span>
+      </div>
+      <mat-icon class="chevron">expand_more</mat-icon>
+    </button>
+
+    <mat-menu #userMenu="matMenu">
+      <button mat-menu-item routerLink="/settings">
+        <mat-icon>manage_accounts</mat-icon> Profile
+      </button>
+      <button mat-menu-item routerLink="/settings">
+        <mat-icon>settings</mat-icon> Settings
+      </button>
+      <mat-divider/>
+      <button mat-menu-item (click)="logout()" class="logout-item">
+        <mat-icon>logout</mat-icon> Logout
+      </button>
+    </mat-menu>
+
+  </div>
+</header>

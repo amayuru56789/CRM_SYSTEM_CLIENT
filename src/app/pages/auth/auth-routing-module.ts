@@ -26,5 +26,6 @@ export const authRoutes: Routes = [
     loadComponent: () =>
       import('./register/register.component')
         .then((m) => m.RegisterComponent)
-  }
+  },
+
 ];

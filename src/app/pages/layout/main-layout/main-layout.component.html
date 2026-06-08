@@ -1,0 +1,37 @@
+<!-- src/app/layout/main-layout/main-layout.component.html -->
+<div class="layout-wrapper">
+
+  <!-- Sidebar desktop -->
+  @if (!isMobile()) {
+<!--    <app-sidebar-->
+<!--      [collapsed]="sidebarCollapsed()"-->
+<!--      (closeSidebar)="mobileOpen.set(false)"/>-->
+  }
+
+  <!-- Mobile overlay -->
+  @if (isMobile() && mobileOpen()) {
+    <div class="mobile-overlay"
+         (click)="mobileOpen.set(false)"></div>
+    <div class="mobile-sidebar">
+<!--      <app-sidebar-->
+<!--        [collapsed]="false"-->
+<!--        (closeSidebar)="mobileOpen.set(false)"/>-->
+    </div>
+  }
+
+  <!-- Main content area -->
+  <div class="layout-main">
+
+    <!-- Topbar -->
+<!--    <app-topbar-->
+<!--      [pageTitle]="pageTitle() ?? 'Dashboard'"-->
+<!--      (toggleSidebar)="toggleSidebar()"/>-->
+
+    <!-- Page content -->
+    <main class="layout-content">
+      <router-outlet/>
+    </main>
+
+  </div>
+
+</div>
