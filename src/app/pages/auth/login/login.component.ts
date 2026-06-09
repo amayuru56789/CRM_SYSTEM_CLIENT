@@ -84,8 +84,8 @@ export class LoginComponent {
     ).subscribe({
       next: () => {
         this.loading.set(false);
-        // this.router.navigate(['/dashboard']);
-        this.router.navigate(['/layout']);
+        this.router.navigate(['/dashboard']);
+        // this.router.navigate(['/layout']);
       },
       error: (err) => {
         this.loading.set(false);

@@ -15,7 +15,7 @@ export interface NavItem {
 }
 
 @Component({
-  selector: 'app-sidebar.component',
+  selector: 'app-sidebar',
   imports: [
     MatIcon,
     RouterLink,

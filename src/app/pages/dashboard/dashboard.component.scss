@@ -1,0 +1,416 @@
+// src/app/pages/post-login/dashboard/dashboard.component.scss
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500&display=swap');
+
+.dashboard {
+  padding:    0;
+  font-family: 'DM Sans', sans-serif;
+}
+
+// ── Header ────────────────────────────────────────────
+.dash-header {
+  display:         flex;
+  justify-content: space-between;
+  align-items:     flex-start;
+  margin-bottom:   24px;
+  flex-wrap:       wrap;
+  gap:             16px;
+}
+
+.dash-title {
+  font-family: 'Inter', sans-serif;
+  font-size:   26px;
+  font-weight: 700;
+  color:       #0f0f1a;
+  margin:      0 0 4px;
+}
+
+.dash-subtitle {
+  font-size: 14px;
+  color:     #888;
+  margin:    0;
+}
+
+.dash-actions {
+  display: flex;
+  gap:     10px;
+
+  button {
+    border-radius: 8px !important;
+    font-family:   'DM Sans', sans-serif !important;
+  }
+}
+
+// ── KPI Grid ──────────────────────────────────────────
+.kpi-grid {
+  display:               grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:                   16px;
+  margin-bottom:         24px;
+
+  @media (max-width: 1100px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.kpi-card {
+  background:    #fff;
+  border-radius: 14px;
+  border:        1px solid #f0f0f0;
+  padding:       20px;
+  transition:    box-shadow 0.2s, transform 0.2s;
+
+  &:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    transform:  translateY(-2px);
+  }
+}
+
+.kpi-top {
+  display:         flex;
+  justify-content: space-between;
+  align-items:     center;
+  margin-bottom:   16px;
+}
+
+.kpi-icon {
+  width:            44px;
+  height:           44px;
+  border-radius:    12px;
+  display:          flex;
+  align-items:      center;
+  justify-content:  center;
+
+  mat-icon {
+    font-size: 22px;
+    width:     22px;
+    height:    22px;
+  }
+}
+
+.kpi-change {
+  display:       flex;
+  align-items:   center;
+  font-size:     12px;
+  font-weight:   600;
+  border-radius: 20px;
+  padding:       4px 8px;
+  gap:           2px;
+
+  mat-icon {
+    font-size: 14px;
+    width:     14px;
+    height:    14px;
+  }
+
+  &.positive {
+    background: #dcfce7;
+    color:      #16a34a;
+  }
+
+  &.negative {
+    background: #fef2f2;
+    color:      #dc2626;
+  }
+}
+
+.kpi-value {
+  font-family:   'Inter', sans-serif;
+  font-size:     28px;
+  font-weight:   700;
+  color:         #0f0f1a;
+  margin-bottom: 4px;
+}
+
+.kpi-label {
+  font-size: 13px;
+  color:     #888;
+}
+
+// ── Shared card styles ────────────────────────────────
+.card {
+  background:    #fff;
+  border-radius: 14px;
+  border:        1px solid #f0f0f0;
+  padding:       20px;
+}
+
+.card-header {
+  display:         flex;
+  justify-content: space-between;
+  align-items:     center;
+  margin-bottom:   16px;
+
+  h3 {
+    font-family: 'Inter', sans-serif;
+    font-size:   16px;
+    font-weight: 700;
+    color:       #0f0f1a;
+    margin:      0;
+  }
+
+  button {
+    font-family: 'DM Sans', sans-serif !important;
+    font-size:   13px !important;
+  }
+}
+
+// ── Middle grid ───────────────────────────────────────
+.mid-grid {
+  display:               grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap:                   16px;
+  margin-bottom:         16px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ── Pipeline ──────────────────────────────────────────
+.pipeline-list  { display: flex; flex-direction: column; gap: 14px; }
+
+.pipeline-row {
+  display:     flex;
+  align-items: center;
+  gap:         12px;
+}
+
+.pipeline-meta {
+  width:           100px;
+  flex-shrink:     0;
+  display:         flex;
+  flex-direction:  column;
+  gap:             2px;
+}
+
+.pipeline-label {
+  font-size:   13px;
+  font-weight: 500;
+  color:       #333;
+}
+
+.pipeline-count {
+  font-size: 11px;
+  color:     #aaa;
+}
+
+.pipeline-bar-bg {
+  flex:          1;
+  height:        8px;
+  background:    #f3f4f6;
+  border-radius: 4px;
+  overflow:      hidden;
+}
+
+.pipeline-bar {
+  height:        100%;
+  border-radius: 4px;
+  transition:    width 0.6s ease;
+}
+
+.pipeline-value {
+  width:      70px;
+  text-align: right;
+  font-size:  13px;
+  font-weight: 600;
+  color:      #333;
+  flex-shrink: 0;
+}
+
+// ── Top Deals ─────────────────────────────────────────
+.deals-list  { display: flex; flex-direction: column; gap: 4px; }
+
+.deal-row {
+  display:       flex;
+  align-items:   center;
+  gap:           12px;
+  padding:       10px 8px;
+  border-radius: 8px;
+  transition:    background 0.15s;
+  cursor:        pointer;
+
+  &:hover { background: #fafafa; }
+}
+
+.deal-avatar {
+  width:            36px;
+  height:           36px;
+  border-radius:    10px;
+  display:          flex;
+  align-items:      center;
+  justify-content:  center;
+  font-size:        13px;
+  font-weight:      700;
+  flex-shrink:      0;
+  font-family:      'Syne', sans-serif;
+}
+
+.deal-info {
+  flex:           1;
+  display:        flex;
+  flex-direction: column;
+  gap:            2px;
+}
+
+.deal-company {
+  font-size:   13px;
+  font-weight: 500;
+  color:       #0f0f1a;
+}
+
+.deal-value {
+  font-size:   12px;
+  color:       #888;
+}
+
+// ── Badges ────────────────────────────────────────────
+.badge {
+  padding:       3px 8px;
+  border-radius: 20px;
+  font-size:     11px;
+  font-weight:   500;
+  white-space:   nowrap;
+  flex-shrink:   0;
+}
+
+.badge-prospect    { background: #e0e7ff; color: #4338ca; }
+.badge-qualified   { background: #e0f2fe; color: #0369a1; }
+.badge-proposal    { background: #fef3c7; color: #b45309; }
+.badge-negotiation { background: #ffe4e6; color: #be123c; }
+.badge-won         { background: #dcfce7; color: #15803d; }
+.badge-lost        { background: #f1f5f9; color: #64748b; }
+
+// ── Bottom grid ───────────────────────────────────────
+.bottom-grid {
+  display:               grid;
+  grid-template-columns: 1.4fr 0.6fr;
+  gap:                   16px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ── Activity ──────────────────────────────────────────
+.activity-list { display: flex; flex-direction: column; gap: 4px; }
+
+.activity-row {
+  display:       flex;
+  align-items:   center;
+  gap:           12px;
+  padding:       10px 8px;
+  border-radius: 8px;
+  transition:    background 0.15s;
+
+  &:hover { background: #fafafa; }
+}
+
+.activity-icon {
+  width:            36px;
+  height:           36px;
+  border-radius:    10px;
+  display:          flex;
+  align-items:      center;
+  justify-content:  center;
+  flex-shrink:      0;
+
+  mat-icon {
+    font-size: 18px;
+    width:     18px;
+    height:    18px;
+  }
+}
+
+.activity-body {
+  flex: 1;
+}
+
+.activity-type {
+  font-size:   11px;
+  font-weight: 600;
+  color:       #aaa;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display:     block;
+  margin-bottom: 2px;
+}
+
+.activity-msg {
+  font-size: 13px;
+  color:     #333;
+  margin:    0;
+}
+
+.activity-time {
+  font-size:  11px;
+  color:      #bbb;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+// ── Quick Stats ───────────────────────────────────────
+.quick-stats { display: flex; flex-direction: column; gap: 4px; }
+
+.stat-row {
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+  padding:         12px 4px;
+}
+
+.stat-left {
+  display:     flex;
+  align-items: center;
+  gap:         12px;
+}
+
+.stat-icon {
+  width:            36px;
+  height:           36px;
+  border-radius:    10px;
+  display:          flex;
+  align-items:      center;
+  justify-content:  center;
+  flex-shrink:      0;
+
+  mat-icon {
+    font-size: 18px;
+    width:     18px;
+    height:    18px;
+  }
+
+  &.purple { background: #f0efff; color: #6c63ff; }
+  &.blue   { background: #e0f2fe; color: #0ea5e9; }
+  &.green  { background: #d1fae5; color: #10b981; }
+  &.amber  { background: #fef3c7; color: #f59e0b; }
+  &.red    { background: #fef2f2; color: #ef4444; }
+}
+
+.stat-label {
+  font-size:   13px;
+  font-weight: 500;
+  color:       #333;
+}
+
+.stat-period {
+  font-size: 11px;
+  color:     #bbb;
+  margin-top: 2px;
+}
+
+.stat-value {
+  font-family: 'Inter', sans-serif;
+  font-size:   18px;
+  font-weight: 700;
+
+  &.purple { color: #6c63ff; }
+  &.blue   { color: #0ea5e9; }
+  &.green  { color: #10b981; }
+  &.amber  { color: #f59e0b; }
+  &.red    { color: #ef4444; }
+}
+
+mat-divider { margin: 0 4px !important; }

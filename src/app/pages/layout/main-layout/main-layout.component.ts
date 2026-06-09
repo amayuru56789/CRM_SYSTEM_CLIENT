@@ -1,14 +1,19 @@
 import {Component, inject, signal} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
-import {NavigationEnd, Router, RouterOutlet} from '@angular/router';
+import {NavigationEnd, Router, RouterModule, RouterOutlet} from '@angular/router';
 import {toSignal} from '@angular/core/rxjs-interop';
 import {filter, map} from 'rxjs';
+import {SidebarComponent} from '../sidebar/sidebar.component';
+import {TopbarComponent} from '../topbar/topbar.component';
 
 @Component({
-  selector: 'app-main-layout.component',
+  selector: 'app-main-layout',
   standalone: true,
   imports: [
-    RouterOutlet
+    RouterOutlet,
+    RouterModule,
+    SidebarComponent,
+    TopbarComponent,
   ],
   templateUrl: './main-layout.component.html',
   styleUrl: './main-layout.component.scss',
@@ -17,6 +22,9 @@ export class MainLayoutComponent {
 
   private breakpoint= inject(BreakpointObserver);
   private router= inject(Router);
+
+  // ── Auto-updating year ──────────────────────────────
+  currentYear = new Date().getFullYear();
 
   sidebarCollapsed = signal(false);
   mobileOpen       = signal(false);

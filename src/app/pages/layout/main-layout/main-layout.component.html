@@ -3,9 +3,9 @@
 
   <!-- Sidebar desktop -->
   @if (!isMobile()) {
-<!--    <app-sidebar-->
-<!--      [collapsed]="sidebarCollapsed()"-->
-<!--      (closeSidebar)="mobileOpen.set(false)"/>-->
+    <app-sidebar
+      [collapsed]="sidebarCollapsed()"
+      (closeSidebar)="mobileOpen.set(false)"/>
   }
 
   <!-- Mobile overlay -->
@@ -13,9 +13,9 @@
     <div class="mobile-overlay"
          (click)="mobileOpen.set(false)"></div>
     <div class="mobile-sidebar">
-<!--      <app-sidebar-->
-<!--        [collapsed]="false"-->
-<!--        (closeSidebar)="mobileOpen.set(false)"/>-->
+      <app-sidebar
+        [collapsed]="false"
+        (closeSidebar)="mobileOpen.set(false)"/>
     </div>
   }
 
@@ -23,14 +23,20 @@
   <div class="layout-main">
 
     <!-- Topbar -->
-<!--    <app-topbar-->
-<!--      [pageTitle]="pageTitle() ?? 'Dashboard'"-->
-<!--      (toggleSidebar)="toggleSidebar()"/>-->
+    <app-topbar
+      [pageTitle]="pageTitle() ?? 'Dashboard'"
+      (toggleSidebar)="toggleSidebar()"/>
 
     <!-- Page content -->
     <main class="layout-content">
       <router-outlet/>
     </main>
+
+    <!-- Footer — shows on every page -->
+    <footer class="layout-footer">
+      <span>© {{ currentYear }} AVC Solutions. All rights reserved.</span>
+      <span class="footer-version">CRMPro v1.0.0</span>
+    </footer>
 
   </div>
 
