@@ -41,12 +41,12 @@ export const routes: Routes = [
           import('./pages/dashboard/dashboard.component')
             .then(m => m.DashboardComponent)
       },
-      // {
-      //   path:          'customers',
-      //   loadComponent: () =>
-      //     import('./pages/post-login/customers/customer-list/customer-list.component')
-      //       .then(m => m.CustomerListComponent)
-      // },
+      {
+        path:          'customers',
+        loadComponent: () =>
+          import('./pages/customers/customer-list/customer-list.component')
+            .then(m => m.CustomerListComponent)
+      },
       // {
       //   path:          'customers/new',
       //   loadComponent: () =>

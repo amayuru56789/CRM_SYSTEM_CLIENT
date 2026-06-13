@@ -1,0 +1,110 @@
+<!-- src/app/pages/post-login/customers/customer-form/customer-form.component.html -->
+<div class="page-container">
+
+  <app-page-header
+    [title]="isEdit() ? 'Edit Customer' : 'New Customer'"
+    [subtitle]="isEdit() ? 'Update customer information' : 'Add a new customer to your CRM'"
+    backRoute="/customers"/>
+
+  @if (pageLoading()) {
+    <app-loading-spinner message="Loading customer..."/>
+  } @else {
+    <div class="form-card">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <!-- Name row -->
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName"
+                   placeholder="John"/>
+            @if (f.firstName.hasError('required') && f.firstName.touched) {
+              <mat-error>First name is required</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName"
+                   placeholder="Smith"/>
+            @if (f.lastName.hasError('required') && f.lastName.touched) {
+              <mat-error>Last name is required</mat-error>
+            }
+          </mat-form-field>
+        </div>
+
+        <!-- Contact row -->
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email"
+                   type="email" placeholder="john@company.com"/>
+            @if (f.email.hasError('email')) {
+              <mat-error>Enter a valid email</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Phone</mat-label>
+            <input matInput formControlName="phone"
+                   placeholder="+94 77 123 4567"/>
+          </mat-form-field>
+        </div>
+
+        <!-- Company row -->
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Company</mat-label>
+            <input matInput formControlName="company"
+                   placeholder="Acme Ltd"/>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Industry</mat-label>
+            <mat-select formControlName="industry">
+              <mat-option value="">— Select —</mat-option>
+              @for (industry of industries; track industry) {
+                <mat-option [value]="industry">{{ industry }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <!-- Status -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="status">
+            <mat-option value="PROSPECT">Prospect</mat-option>
+            <mat-option value="ACTIVE">Active</mat-option>
+            <mat-option value="INACTIVE">Inactive</mat-option>
+            <mat-option value="CHURNED">Churned</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Notes -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Notes</mat-label>
+          <textarea matInput formControlName="notes"
+                    rows="4"
+                    placeholder="Any notes about this customer..."></textarea>
+        </mat-form-field>
+
+        <!-- Actions -->
+        <div class="form-actions">
+          <button mat-stroked-button type="button"
+                  routerLink="/customers">
+            Cancel
+          </button>
+          <button mat-flat-button color="primary"
+                  type="submit"
+                  [disabled]="form.invalid || saving()">
+            <mat-icon>{{ isEdit() ? 'save' : 'add' }}</mat-icon>
+            {{ isEdit() ? 'Update' : 'Create' }} Customer
+          </button>
+        </div>
+
+      </form>
+    </div>
+  }
+
+</div>

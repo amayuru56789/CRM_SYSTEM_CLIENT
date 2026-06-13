@@ -1,0 +1,50 @@
+// src/app/pages/post-login/customers/customer-form/customer-form.component.scss
+.page-container {
+  max-width:   720px;
+  margin:      0 auto;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.form-card {
+  background:    #fff;
+  border-radius: 14px;
+  border:        1px solid #f0f0f0;
+  padding:       32px;
+}
+
+.form-row {
+  display:               grid;
+  grid-template-columns: 1fr 1fr;
+  gap:                   16px;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.full-width {
+  width:         100%;
+  margin-bottom: 4px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.form-actions {
+  display:         flex;
+  justify-content: flex-end;
+  gap:             12px;
+  margin-top:      16px;
+
+  button {
+    border-radius: 8px !important;
+
+    mat-icon {
+      margin-right: 4px;
+      font-size:    18px;
+      width:        18px;
+      height:       18px;
+    }
+  }
+}

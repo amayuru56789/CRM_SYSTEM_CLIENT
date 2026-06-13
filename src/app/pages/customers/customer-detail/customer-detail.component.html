@@ -1,0 +1,75 @@
+<!--&lt;!&ndash; src/app/pages/post-login/customers/customer-detail/customer-detail.component.html &ndash;&gt;-->
+<!--<div class="page-container">-->
+
+<!--  @if (loading()) {-->
+<!--    <app-loading-spinner message="Loading customer..."/>-->
+<!--  } @else if (customer()) {-->
+
+<!--    <app-page-header-->
+<!--      [title]="customer()!.fullName"-->
+<!--      subtitle="Customer details"-->
+<!--      backRoute="/customers"-->
+<!--      [actions]="headerActions"/>-->
+
+<!--    &lt;!&ndash; Status + delete row &ndash;&gt;-->
+<!--    <div class="status-row">-->
+<!--      <span class="badge" [ngClass]="getStatusClass()">-->
+<!--        {{ customer()!.status }}-->
+<!--      </span>-->
+<!--      <button mat-stroked-button color="warn" (click)="delete()">-->
+<!--        <mat-icon>delete</mat-icon> Delete-->
+<!--      </button>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Info cards &ndash;&gt;-->
+<!--    <div class="info-grid">-->
+
+<!--      <div class="info-card">-->
+<!--        <h3>Contact Info</h3>-->
+<!--        <div class="info-row">-->
+<!--          <mat-icon>email</mat-icon>-->
+<!--          <span>{{ customer()!.email || '—' }}</span>-->
+<!--        </div>-->
+<!--        <div class="info-row">-->
+<!--          <mat-icon>phone</mat-icon>-->
+<!--          <span>{{ customer()!.phone || '—' }}</span>-->
+<!--        </div>-->
+<!--        <div class="info-row">-->
+<!--          <mat-icon>business</mat-icon>-->
+<!--          <span>{{ customer()!.company || '—' }}</span>-->
+<!--        </div>-->
+<!--        <div class="info-row">-->
+<!--          <mat-icon>category</mat-icon>-->
+<!--          <span>{{ customer()!.industry || '—' }}</span>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="info-card">-->
+<!--        <h3>Assignment</h3>-->
+<!--        <div class="info-row">-->
+<!--          <mat-icon>person</mat-icon>-->
+<!--          <span>{{ customer()!.assignedToName || 'Unassigned' }}</span>-->
+<!--        </div>-->
+<!--        <div class="info-row">-->
+<!--          <mat-icon>calendar_today</mat-icon>-->
+<!--          <span>Created: {{ customer()!.createdAt | date:'mediumDate' }}</span>-->
+<!--        </div>-->
+<!--        <div class="info-row">-->
+<!--          <mat-icon>update</mat-icon>-->
+<!--          <span>Updated: {{ customer()!.updatedAt | date:'mediumDate' }}</span>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Notes &ndash;&gt;-->
+<!--    @if (customer()!.notes) {-->
+<!--      <div class="info-card">-->
+<!--        <h3>Notes</h3>-->
+<!--        <p class="notes-text">{{ customer()!.notes }}</p>-->
+<!--      </div>-->
+<!--    }-->
+
+<!--  }-->
+
+<!--</div>-->

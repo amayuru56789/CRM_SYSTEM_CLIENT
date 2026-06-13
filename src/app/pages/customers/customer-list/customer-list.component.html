@@ -1,0 +1,49 @@
+<!-- src/app/pages/post-login/customers/customer-list/customer-list.component.html -->
+<div class="page-container">
+
+  <!-- Header -->
+  <app-page-header
+    title="Customers"
+    [subtitle]="totalElements() + ' total customers'"
+    [actions]="headerActions"/>
+
+  <!-- Filters -->
+  <div class="filters-bar">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-icon matPrefix>search</mat-icon>
+      <input matInput
+             placeholder="Search name, email, company..."
+             [ngModel]="searchTerm"
+             (ngModelChange)="onSearchChange($event)"/>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="status-field">
+      <mat-select placeholder="All statuses"
+                  [(ngModel)]="selectedStatus"
+                  (ngModelChange)="onFilterChange()">
+        <mat-option [value]="null">All statuses</mat-option>
+        <mat-option value="PROSPECT">Prospect</mat-option>
+        <mat-option value="ACTIVE">Active</mat-option>
+        <mat-option value="INACTIVE">Inactive</mat-option>
+        <mat-option value="CHURNED">Churned</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- Table or Loading -->
+  @if (loading()) {
+    <app-loading-spinner message="Loading customers..."/>
+  } @else {
+    <app-data-table
+      [columns]="columns"
+      [data]="customers()"
+      [actions]="tableActions"
+      [total]="totalElements()"
+      [pageSize]="pageSize"
+      emptyMessage="No customers found. Click 'Add Customer' to create one."
+      (rowClick)="onRowClick($event)"
+      (actionClick)="onAction($event)"
+      (pageChange)="onPageChange($event)"/>
+  }
+
+</div>
